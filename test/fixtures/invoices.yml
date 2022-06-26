@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  foreign_country: false
+  amount: 9.99
+  invoice_date: 2022-06-26 00:50:09
+  user: one
+
+two:
+  foreign_country: false
+  amount: 9.99
+  invoice_date: 2022-06-26 00:50:09
+  user: two

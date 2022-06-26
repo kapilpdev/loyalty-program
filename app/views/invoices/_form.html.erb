@@ -1,0 +1,27 @@
+<%= form_with(model: invoice) do |form| %>
+  <% if invoice.errors.any? %>
+    <div>
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+        <% invoice.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  <div>
+    <%= form.label :invoice_date %>
+    <%= form.date_field :invoice_date %>
+  </div>
+
+  <div>
+    <%= form.label :amount %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div>
+    <%= form.check_box :foreign_country %>
+    <%= form.label :foreign_country %>
+  </div>
+  <%= form.submit %>
+<% end %>
