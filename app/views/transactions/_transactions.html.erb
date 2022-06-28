@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th scope="col">SNo</th>
+      <th scope="col">Transaction Date</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Foreign Country</th>
+      <th scope="col">Customer Tier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <th><%= @transactions.index(transaction) + 1 %></th>
+        <td><%= transaction.invoice_date.strftime('%B %e, %Y') %></td>
+        <td><%= number_to_currency(transaction.amount) %></td>
+        <td><%= transaction.foreign_country ? 'Yes' : 'No' %></td>
+        <td><%= current_user.customer_tier.titleize %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

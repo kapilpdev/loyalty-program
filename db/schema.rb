@@ -10,18 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_192009) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_102015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "invoices", force: :cascade do |t|
+  create_table "loyalty_points", force: :cascade do |t|
+    t.integer "point", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "point_expired"
+    t.index ["user_id"], name: "index_loyalty_points_on_user_id"
+  end
+
+  create_table "loyalty_rewards", force: :cascade do |t|
+    t.string "reward_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
     t.boolean "foreign_country", default: false
     t.decimal "amount", null: false
     t.datetime "invoice_date", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_invoices_on_user_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
+  create_table "user_rewards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "loyalty_reward_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loyalty_reward_id"], name: "index_user_rewards_on_loyalty_reward_id"
+    t.index ["user_id"], name: "index_user_rewards_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,9 +57,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_192009) do
     t.datetime "dob", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_tier", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "invoices", "users"
+  add_foreign_key "loyalty_points", "users"
+  add_foreign_key "transactions", "users"
+  add_foreign_key "user_rewards", "loyalty_rewards"
+  add_foreign_key "user_rewards", "users"
 end
