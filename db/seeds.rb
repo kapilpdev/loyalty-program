@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+LoyaltyReward::REWARD_TYPE.each do |type|
+  LoyaltyReward.create(reward_type: type)
+end
