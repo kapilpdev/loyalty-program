@@ -1,20 +1,22 @@
 <%= link_to "New Transaction", new_transaction_path %>
 
 <h1>Transactions</h1>
-<% if @transactions.present? %>
-  <%= render 'transactions', transactions: @transactions %>
-<% else %>
-  <h4> There is no previous transactions available.</h4>
-<% end %>
+  <% if @transactions.present? %>
+    <%= render 'transactions', transactions: @transactions %>
+  <% else %>
+    <h4> There is no previous transactions available.</h4>
+  <% end %>
+
 <br><hr>
 <div>
   Total Earned Points: 
   <span><%= user_loyalty_points %></span>
 </div>
+
 <div>
   <h1>Rewards</h1>
-<% if @rewards.present? %>
-  <%= render 'reward_list', rewards: @rewards %>
-<% end %>
+  <% if @rewards.present? %>
+    <%= render 'reward_list', rewards: @rewards %>
+  <% end %>
 </div>
-</div>
+
