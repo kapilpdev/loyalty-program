@@ -33,7 +33,7 @@ class AssignLoyaltyTierToUserJob < ApplicationJob
     elsif !user.gold_tier? && points >= 1000
       user.gold_tier!
 
-      user.reward_user("airport_lounge_access") unless Award.awarded?(user, "airport_lounge_access")
+      user.reward_user("airport_lounge_access") unless !user.rewarded_with?("airport_lounge_access")
     elsif !user.standard_tier?
       user.standard_tier!
     end

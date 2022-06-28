@@ -50,5 +50,5 @@ class Transaction < ApplicationRecord
   def check_movie_ticket_awarded
     !user.rewarded_with?("movie_ticket")
   end
-  
+
 end
