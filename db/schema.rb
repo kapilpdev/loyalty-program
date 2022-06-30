@@ -16,10 +16,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_102015) do
 
   create_table "loyalty_points", force: :cascade do |t|
     t.integer "point", null: false
+    t.boolean "point_expired", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "point_expired"
     t.index ["user_id"], name: "index_loyalty_points_on_user_id"
   end
 

@@ -2,7 +2,7 @@ class LoyaltyReward < ApplicationRecord
   REWARD_TYPE = [
     "Free Coffee",
     "5\% Cash Rebate",
-    "Movie Tickets",
+    "Movie Ticket",
     "4x Airport Lounge Access"
   ].freeze
 

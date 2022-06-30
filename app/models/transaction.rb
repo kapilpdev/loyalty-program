@@ -36,9 +36,9 @@ class Transaction < ApplicationRecord
   def movie_ticket_reward
     first_transaction_date = user.transactions.first.created_at
 
-    transcations_amout_within_60_days = Transaction.where(created_at: first_transaction_date..(first_transaction_date + 60.day)).sum(:amount)
+    transcations_amount_within_60_days = Transaction.where(created_at: first_transaction_date..(first_transaction_date + 60.day)).sum(:amount)
 
-    return if transcations_amout_within_60_days < 1000
+    return if transcations_amount_within_60_days < 1000
 
     user.reward_user("movie_ticket")
   end

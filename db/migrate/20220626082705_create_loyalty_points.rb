@@ -5,7 +5,7 @@ class CreateLoyaltyPoints < ActiveRecord::Migration[7.0]
       t.boolean :point_expired, default: false
       t.references :user, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
