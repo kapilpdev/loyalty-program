@@ -1,8 +1,0 @@
-<h1>Invoices</h1>
-<% if @invoices.present? %>
-  <%= render 'invoices', invoices: @invoices %>
-<% else %>
-  <h4> There is no previous invoices available.</h4>
-<% end %>
-
-<%= link_to "New invoice", new_invoice_path %>
